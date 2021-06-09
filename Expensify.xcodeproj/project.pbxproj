@@ -8,15 +8,10 @@
 
 /* Begin PBXBuildFile section */
 		598BC7DC2670E99200F8BCC0 /* Expensify.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 598BC7C62670E99100F8BCC0 /* Expensify.xcdatamodeld */; };
-		598BC7DD2670E99200F8BCC0 /* Expensify.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 598BC7C62670E99100F8BCC0 /* Expensify.xcdatamodeld */; };
 		598BC7DE2670E99200F8BCC0 /* ExpensifyApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 598BC7C82670E99100F8BCC0 /* ExpensifyApp.swift */; };
-		598BC7DF2670E99200F8BCC0 /* ExpensifyApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 598BC7C82670E99100F8BCC0 /* ExpensifyApp.swift */; };
 		598BC7E02670E99200F8BCC0 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 598BC7C92670E99100F8BCC0 /* ContentView.swift */; };
-		598BC7E12670E99200F8BCC0 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 598BC7C92670E99100F8BCC0 /* ContentView.swift */; };
 		598BC7E22670E99200F8BCC0 /* Persistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = 598BC7CA2670E99100F8BCC0 /* Persistence.swift */; };
-		598BC7E32670E99200F8BCC0 /* Persistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = 598BC7CA2670E99100F8BCC0 /* Persistence.swift */; };
 		598BC7E42670E99200F8BCC0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 598BC7CB2670E99200F8BCC0 /* Assets.xcassets */; };
-		598BC7E52670E99200F8BCC0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 598BC7CB2670E99200F8BCC0 /* Assets.xcassets */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -27,20 +22,10 @@
 		598BC7CB2670E99200F8BCC0 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		598BC7D02670E99200F8BCC0 /* Expensify.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Expensify.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		598BC7D32670E99200F8BCC0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		598BC7D82670E99200F8BCC0 /* Expensify.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Expensify.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		598BC7DA2670E99200F8BCC0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		598BC7DB2670E99200F8BCC0 /* macOS.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = macOS.entitlements; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
 		598BC7CD2670E99200F8BCC0 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		598BC7D52670E99200F8BCC0 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -55,7 +40,6 @@
 			children = (
 				598BC7C52670E99100F8BCC0 /* Shared */,
 				598BC7D22670E99200F8BCC0 /* iOS */,
-				598BC7D92670E99200F8BCC0 /* macOS */,
 				598BC7D12670E99200F8BCC0 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -76,7 +60,6 @@
 			isa = PBXGroup;
 			children = (
 				598BC7D02670E99200F8BCC0 /* Expensify.app */,
-				598BC7D82670E99200F8BCC0 /* Expensify.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -87,15 +70,6 @@
 				598BC7D32670E99200F8BCC0 /* Info.plist */,
 			);
 			path = iOS;
-			sourceTree = "<group>";
-		};
-		598BC7D92670E99200F8BCC0 /* macOS */ = {
-			isa = PBXGroup;
-			children = (
-				598BC7DA2670E99200F8BCC0 /* Info.plist */,
-				598BC7DB2670E99200F8BCC0 /* macOS.entitlements */,
-			);
-			path = macOS;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -118,23 +92,6 @@
 			productReference = 598BC7D02670E99200F8BCC0 /* Expensify.app */;
 			productType = "com.apple.product-type.application";
 		};
-		598BC7D72670E99200F8BCC0 /* Expensify (macOS) */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 598BC7EB2670E99200F8BCC0 /* Build configuration list for PBXNativeTarget "Expensify (macOS)" */;
-			buildPhases = (
-				598BC7D42670E99200F8BCC0 /* Sources */,
-				598BC7D52670E99200F8BCC0 /* Frameworks */,
-				598BC7D62670E99200F8BCC0 /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-			);
-			name = "Expensify (macOS)";
-			productName = "Expensify (macOS)";
-			productReference = 598BC7D82670E99200F8BCC0 /* Expensify.app */;
-			productType = "com.apple.product-type.application";
-		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -145,9 +102,6 @@
 				LastUpgradeCheck = 1250;
 				TargetAttributes = {
 					598BC7CF2670E99200F8BCC0 = {
-						CreatedOnToolsVersion = 12.5;
-					};
-					598BC7D72670E99200F8BCC0 = {
 						CreatedOnToolsVersion = 12.5;
 					};
 				};
@@ -166,7 +120,6 @@
 			projectRoot = "";
 			targets = (
 				598BC7CF2670E99200F8BCC0 /* Expensify (iOS) */,
-				598BC7D72670E99200F8BCC0 /* Expensify (macOS) */,
 			);
 		};
 /* End PBXProject section */
@@ -177,14 +130,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				598BC7E42670E99200F8BCC0 /* Assets.xcassets in Resources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		598BC7D62670E99200F8BCC0 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				598BC7E52670E99200F8BCC0 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -199,17 +144,6 @@
 				598BC7E22670E99200F8BCC0 /* Persistence.swift in Sources */,
 				598BC7DE2670E99200F8BCC0 /* ExpensifyApp.swift in Sources */,
 				598BC7E02670E99200F8BCC0 /* ContentView.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		598BC7D42670E99200F8BCC0 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				598BC7DD2670E99200F8BCC0 /* Expensify.xcdatamodeld in Sources */,
-				598BC7E32670E99200F8BCC0 /* Persistence.swift in Sources */,
-				598BC7DF2670E99200F8BCC0 /* ExpensifyApp.swift in Sources */,
-				598BC7E12670E99200F8BCC0 /* ContentView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -333,6 +267,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 4ND5VF5RJ5;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = iOS/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
@@ -344,7 +279,7 @@
 				PRODUCT_NAME = Expensify;
 				SDKROOT = iphoneos;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -354,6 +289,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 4ND5VF5RJ5;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = iOS/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
@@ -365,52 +301,8 @@
 				PRODUCT_NAME = Expensify;
 				SDKROOT = iphoneos;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 				VALIDATE_PRODUCT = YES;
-			};
-			name = Release;
-		};
-		598BC7EC2670E99200F8BCC0 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				CODE_SIGN_ENTITLEMENTS = macOS/macOS.entitlements;
-				CODE_SIGN_STYLE = Automatic;
-				COMBINE_HIDPI_IMAGES = YES;
-				ENABLE_PREVIEWS = YES;
-				INFOPLIST_FILE = macOS/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/../Frameworks",
-				);
-				MACOSX_DEPLOYMENT_TARGET = 11.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.jautung.Expensify;
-				PRODUCT_NAME = Expensify;
-				SDKROOT = macosx;
-				SWIFT_VERSION = 5.0;
-			};
-			name = Debug;
-		};
-		598BC7ED2670E99200F8BCC0 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				CODE_SIGN_ENTITLEMENTS = macOS/macOS.entitlements;
-				CODE_SIGN_STYLE = Automatic;
-				COMBINE_HIDPI_IMAGES = YES;
-				ENABLE_PREVIEWS = YES;
-				INFOPLIST_FILE = macOS/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/../Frameworks",
-				);
-				MACOSX_DEPLOYMENT_TARGET = 11.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.jautung.Expensify;
-				PRODUCT_NAME = Expensify;
-				SDKROOT = macosx;
-				SWIFT_VERSION = 5.0;
 			};
 			name = Release;
 		};
@@ -431,15 +323,6 @@
 			buildConfigurations = (
 				598BC7E92670E99200F8BCC0 /* Debug */,
 				598BC7EA2670E99200F8BCC0 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		598BC7EB2670E99200F8BCC0 /* Build configuration list for PBXNativeTarget "Expensify (macOS)" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				598BC7EC2670E99200F8BCC0 /* Debug */,
-				598BC7ED2670E99200F8BCC0 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
