@@ -101,7 +101,7 @@ struct AlertControlView: UIViewControllerRepresentable { // adapted from https:/
     @Binding var showAlert: Bool
     var title: String
     var message: String
-    var confirmation: String
+    var confirmation: String? // nil if no confirmation is required (i.e. only close)
     var placeholder: String? // nil if a text field is not required
     var submitCallback: (String) -> Void
 
@@ -123,13 +123,15 @@ struct AlertControlView: UIViewControllerRepresentable { // adapted from https:/
                 }
             }
             
-            alert.addAction(UIAlertAction(title: NSLocalizedString("Cancel", comment: "") , style: .destructive) { _ in
-                alert.dismiss(animated: true) {
-                    showAlert = false
-                }
-            })
+            if confirmation != nil {
+                alert.addAction(UIAlertAction(title: NSLocalizedString("Cancel", comment: "") , style: .destructive) { _ in
+                    alert.dismiss(animated: true) {
+                        showAlert = false
+                    }
+                })
+            }
             
-            alert.addAction(UIAlertAction(title: NSLocalizedString(confirmation, comment: ""), style: .default) { _ in
+            alert.addAction(UIAlertAction(title: NSLocalizedString(confirmation == nil ? "Close" : confirmation!, comment: ""), style: .default) { _ in
                 if placeholder != nil { // alert with text field
                     if let textField = alert.textFields?.first, let text = textField.text {
                         submitCallback(text)

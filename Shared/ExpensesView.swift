@@ -2,6 +2,8 @@ import SwiftUI
 
 struct ExpensesView: View {
     @ObservedObject var expensifyData: ExpensifyData
+    @State var inspectExpenseShowAlert: Bool = false
+    @State var inspectExpenseId: String = ""
     @State var deleteExpenseShowAlert: Bool = false
     @State var deleteExpenseId: String = ""
 
@@ -17,7 +19,13 @@ struct ExpensesView: View {
                             CustomDivider(size: 2)
                             HStack {
                                 Spacer()
-                                PText(text: expenseFormatter(expense: expenses[expenseIndex])).frame(width: 320, height: 20, alignment: .leading)
+                                Button(action: {
+                                    inspectExpenseId = expenses[expenseIndex].id
+                                    inspectExpenseShowAlert = true
+                                }) {
+                                    PText(text: expenseDisplayFormatter(expense: expenses[expenseIndex]))
+                                        .frame(width: 320, height: 20, alignment: .leading)
+                                }
                                 Button(action: { // delete button
                                     deleteExpenseId = expenses[expenseIndex].id
                                     deleteExpenseShowAlert = true
@@ -29,6 +37,16 @@ struct ExpensesView: View {
                     }
                 }
                 Spacer() // flushes VStack to the top
+            }
+            if inspectExpenseShowAlert {
+                AlertControlView(
+                    showAlert: $inspectExpenseShowAlert,
+                    title: expenseDetailedFormatterTitle(expense: expensifyData.getExpense(id: inspectExpenseId)),
+                    message: expenseDetailedFormatterMessage(expense: expensifyData.getExpense(id: inspectExpenseId)),
+                    confirmation: nil,
+                    placeholder: nil,
+                    submitCallback: { _ in }
+                )
             }
             if deleteExpenseShowAlert {
                 AlertControlView(
@@ -45,9 +63,19 @@ struct ExpensesView: View {
         }
     }
     
-    func expenseFormatter(expense: Expense) -> String {
+    func expenseDisplayFormatter(expense: Expense) -> String {
         let formatter = DateFormatter()
         formatter.dateFormat = "d MMM y (E) h:mma"
         return "\(formatter.string(from: expense.date)): $\(String(format: "%.2f", expense.amount)) (\(expensifyData.getCategory(id: expense.categoryId)))"
+    }
+
+    func expenseDetailedFormatterTitle(expense: Expense) -> String {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "d MMM y (E) h:mma"
+        return "\(formatter.string(from: expense.date))"
+    }
+
+    func expenseDetailedFormatterMessage(expense: Expense) -> String {
+        return "\nAmount: $\(String(format: "%.2f", expense.amount)) (\(expense.currency))\n\nCategory: \(expensifyData.getCategory(id: expense.categoryId))" + (expense.remarks != "" ? "\n\nRemarks: \(expense.remarks)" : "")
     }
 }
