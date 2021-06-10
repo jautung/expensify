@@ -128,27 +128,34 @@ final class ExpensifyData: ObservableObject, Codable {
     }
 }
 
+// to retrieve backup .json files
 func storeExpensifyData(expensifyData: ExpensifyData) {
     do {
         let encoder = JSONEncoder()
         let encodedExpensifyData = try encoder.encode(expensifyData)
-        UserDefaults.standard.set(encodedExpensifyData, forKey: "expensifyData")
+        let url = getDocumentsDirectory().appendingPathComponent("expensifyData.json")
+        try encodedExpensifyData.write(to: url, options: [])
+        print("expensify data stored in \(url)")
     } catch {
-        print("unable to encode (\(error))")
+        print("unable to store expensify data (\(error))")
     }
 }
 
 func loadExpensifyData() -> ExpensifyData {
     do {
         let decoder = JSONDecoder()
-        let encodedExpensifyData = UserDefaults.standard.object(forKey: "expensifyData")
-        if encodedExpensifyData == nil {
-            return ExpensifyData(categories_: [], expenses_: [])
-        } else {
-            return try decoder.decode(ExpensifyData.self, from: encodedExpensifyData as! Data)
-        }
+        let url = getDocumentsDirectory().appendingPathComponent("expensifyData.json")
+        let encodedExpensifyData = try Data(contentsOf: url)
+        let expensifyData = try decoder.decode(ExpensifyData.self, from: encodedExpensifyData)
+        print("expensify data loaded from \(url)")
+        return expensifyData
     } catch {
-        print("unable to decode (\(error))")
+        print("unable to load expensify data (\(error))")
         return ExpensifyData(categories_: [], expenses_: [])
     }
+}
+
+func getDocumentsDirectory() -> URL {
+    let paths = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
+    return paths[0]
 }
