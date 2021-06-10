@@ -10,6 +10,9 @@
 		591EFE9F2671BC510051AF57 /* FormView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 591EFE9E2671BC510051AF57 /* FormView.swift */; };
 		591EFEA12671BC810051AF57 /* TrendView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 591EFEA02671BC810051AF57 /* TrendView.swift */; };
 		591EFEA32671BC970051AF57 /* ChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 591EFEA22671BC970051AF57 /* ChartView.swift */; };
+		591EFEA52671C7060051AF57 /* CategoriesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 591EFEA42671C7060051AF57 /* CategoriesView.swift */; };
+		591EFEA72671DD360051AF57 /* TemplateViews.swift in Sources */ = {isa = PBXBuildFile; fileRef = 591EFEA62671DD360051AF57 /* TemplateViews.swift */; };
+		591EFEA92671EE950051AF57 /* AlertControlView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 591EFEA82671EE950051AF57 /* AlertControlView.swift */; };
 		598BC7DC2670E99200F8BCC0 /* Expensify.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 598BC7C62670E99100F8BCC0 /* Expensify.xcdatamodeld */; };
 		598BC7DE2670E99200F8BCC0 /* ExpensifyApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 598BC7C82670E99100F8BCC0 /* ExpensifyApp.swift */; };
 		598BC7E02670E99200F8BCC0 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 598BC7C92670E99100F8BCC0 /* MainView.swift */; };
@@ -20,6 +23,9 @@
 		591EFE9E2671BC510051AF57 /* FormView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormView.swift; sourceTree = "<group>"; };
 		591EFEA02671BC810051AF57 /* TrendView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrendView.swift; sourceTree = "<group>"; };
 		591EFEA22671BC970051AF57 /* ChartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartView.swift; sourceTree = "<group>"; };
+		591EFEA42671C7060051AF57 /* CategoriesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoriesView.swift; sourceTree = "<group>"; };
+		591EFEA62671DD360051AF57 /* TemplateViews.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TemplateViews.swift; sourceTree = "<group>"; };
+		591EFEA82671EE950051AF57 /* AlertControlView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertControlView.swift; sourceTree = "<group>"; };
 		598BC7C72670E99100F8BCC0 /* Shared.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Shared.xcdatamodel; sourceTree = "<group>"; };
 		598BC7C82670E99100F8BCC0 /* ExpensifyApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpensifyApp.swift; sourceTree = "<group>"; };
 		598BC7C92670E99100F8BCC0 /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
@@ -54,6 +60,9 @@
 				598BC7C82670E99100F8BCC0 /* ExpensifyApp.swift */,
 				598BC7C92670E99100F8BCC0 /* MainView.swift */,
 				591EFEA22671BC970051AF57 /* ChartView.swift */,
+				591EFEA42671C7060051AF57 /* CategoriesView.swift */,
+				591EFEA82671EE950051AF57 /* AlertControlView.swift */,
+				591EFEA62671DD360051AF57 /* TemplateViews.swift */,
 				591EFEA02671BC810051AF57 /* TrendView.swift */,
 				591EFE9E2671BC510051AF57 /* FormView.swift */,
 				598BC7CB2670E99200F8BCC0 /* Assets.xcassets */,
@@ -146,7 +155,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				591EFEA72671DD360051AF57 /* TemplateViews.swift in Sources */,
 				591EFE9F2671BC510051AF57 /* FormView.swift in Sources */,
+				591EFEA52671C7060051AF57 /* CategoriesView.swift in Sources */,
+				591EFEA92671EE950051AF57 /* AlertControlView.swift in Sources */,
 				598BC7DC2670E99200F8BCC0 /* Expensify.xcdatamodeld in Sources */,
 				591EFEA12671BC810051AF57 /* TrendView.swift in Sources */,
 				598BC7DE2670E99200F8BCC0 /* ExpensifyApp.swift in Sources */,

@@ -8,11 +8,3 @@ struct ChartView: View {
         }
     }
 }
-
-// DEBUGGING PREVIEW BELOW THIS LINE
-
-struct ChartViewPreview: PreviewProvider {
-    static var previews: some View {
-        ChartView()
-    }
-}
