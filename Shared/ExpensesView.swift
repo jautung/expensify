@@ -17,7 +17,7 @@ struct ExpensesView: View {
                             CustomDivider(size: 2)
                             HStack {
                                 Spacer()
-                                PText(text: expenseFormatter(expense: expenses[expenseIndex])).frame(width: 280, height: 20, alignment: .leading)
+                                PText(text: expenseFormatter(expense: expenses[expenseIndex])).frame(width: 320, height: 20, alignment: .leading)
                                 Button(action: { // delete button
                                     deleteExpenseId = expenses[expenseIndex].id
                                     deleteExpenseShowAlert = true
@@ -33,7 +33,7 @@ struct ExpensesView: View {
             if deleteExpenseShowAlert {
                 AlertControlView(
                     showAlert: $deleteExpenseShowAlert,
-                    title: "Delete Expense of $\(expensifyData.getExpense(id: deleteExpenseId).amount)",
+                    title: "Delete Expense of $\(expensifyData.getExpense(id: deleteExpenseId).amount)?",
                     message: "Warning: This deletion is irreversible!",
                     confirmation: "Delete",
                     placeholder: nil,
@@ -45,9 +45,9 @@ struct ExpensesView: View {
         }
     }
     
-    func expenseFormatter(expense: (id: String, date: Date, amount: Float, currency: String, categoryId: String, remarks: String)) -> String {
+    func expenseFormatter(expense: Expense) -> String {
         let formatter = DateFormatter()
         formatter.dateFormat = "d MMM y (E) h:mma"
-        return formatter.string(from: expense.date) + ": $\(expense.amount) (\(expensifyData.getCategory(id: expense.categoryId)))"
+        return "\(formatter.string(from: expense.date)): $\(String(format: "%.2f", expense.amount)) (\(expensifyData.getCategory(id: expense.categoryId)))"
     }
 }

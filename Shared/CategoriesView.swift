@@ -54,9 +54,9 @@ struct CategoriesView: View {
             if editCategoryShowAlert {
                 AlertControlView(
                     showAlert: $editCategoryShowAlert,
-                    title: "Edit Category (\(expensifyData.getCategory(id: editCategoryId)))",
+                    title: "Rename Category: \(expensifyData.getCategory(id: editCategoryId))",
                     message: "Warning: This will modify \(expensifyData.getCategoryCount(id: editCategoryId)) expense entries!",
-                    confirmation: "Edit",
+                    confirmation: "Rename",
                     placeholder: "New name",
                     submitCallback: { (newName: String) in
                         expensifyData.editCategory(id: editCategoryId, newName: newName)
@@ -66,7 +66,7 @@ struct CategoriesView: View {
             if deleteCategoryShowAlert {
                 AlertControlView(
                     showAlert: $deleteCategoryShowAlert,
-                    title: "Delete Category (\(expensifyData.getCategory(id: deleteCategoryId)))",
+                    title: "Delete Category: \(expensifyData.getCategory(id: deleteCategoryId))",
                     message: "Warning: This will irreversibly move \(expensifyData.getCategoryCount(id: deleteCategoryId)) expense entries to 'Others'!",
                     confirmation: "Delete",
                     placeholder: nil,

@@ -1,11 +1,12 @@
 import SwiftUI
 
 struct MainView: View {
+    @ObservedObject var expensifyData: ExpensifyData
     @State var selectedTab: Int = 1 // default second tab (add expense)
-    @ObservedObject var expensifyData: ExpensifyData = ExpensifyData()
 
     init() {
         UITabBar.appearance().backgroundColor = UIColor(Color("TabColor"))
+        expensifyData = loadExpensifyData()
     }
 
     var body: some View {
@@ -13,7 +14,7 @@ struct MainView: View {
             CategoriesView(expensifyData: expensifyData).tabItem {
                 Label("Categories", systemImage: "shippingbox.fill")
             }.tag(0)
-            FormView(expensifyData: expensifyData).tabItem {
+            FormView(expensifyData: expensifyData, selectedTab: $selectedTab).tabItem {
                 Label("Add", systemImage: "plus.circle.fill")
             }.tag(1)
             ExpensesView(expensifyData: expensifyData).tabItem {

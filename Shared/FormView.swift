@@ -2,6 +2,7 @@ import SwiftUI
 
 struct FormView: View {
     @ObservedObject var expensifyData: ExpensifyData
+    @Binding var selectedTab: Int
     @State var date: Date = Date()
     @State var amount: String = ""
     @State var amountError: Bool = false
@@ -63,6 +64,11 @@ struct FormView: View {
                     categoryError = (categoryId == "")
                     if amountError || categoryError { return }
                     expensifyData.addExpense(date: date, amount: Float(amount)!, currency: currency, categoryId: categoryId, remarks: remarks)
+                    date = Date()
+                    amount = ""
+                    categoryId = ""
+                    remarks = ""
+                    selectedTab = 2
                 })
 
                 Spacer() // flushes VStack to the top
