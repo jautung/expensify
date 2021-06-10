@@ -9,16 +9,14 @@
 /* Begin PBXBuildFile section */
 		598BC7DC2670E99200F8BCC0 /* Expensify.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 598BC7C62670E99100F8BCC0 /* Expensify.xcdatamodeld */; };
 		598BC7DE2670E99200F8BCC0 /* ExpensifyApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 598BC7C82670E99100F8BCC0 /* ExpensifyApp.swift */; };
-		598BC7E02670E99200F8BCC0 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 598BC7C92670E99100F8BCC0 /* ContentView.swift */; };
-		598BC7E22670E99200F8BCC0 /* Persistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = 598BC7CA2670E99100F8BCC0 /* Persistence.swift */; };
+		598BC7E02670E99200F8BCC0 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 598BC7C92670E99100F8BCC0 /* MainView.swift */; };
 		598BC7E42670E99200F8BCC0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 598BC7CB2670E99200F8BCC0 /* Assets.xcassets */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		598BC7C72670E99100F8BCC0 /* Shared.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Shared.xcdatamodel; sourceTree = "<group>"; };
 		598BC7C82670E99100F8BCC0 /* ExpensifyApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpensifyApp.swift; sourceTree = "<group>"; };
-		598BC7C92670E99100F8BCC0 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
-		598BC7CA2670E99100F8BCC0 /* Persistence.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Persistence.swift; sourceTree = "<group>"; };
+		598BC7C92670E99100F8BCC0 /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
 		598BC7CB2670E99200F8BCC0 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		598BC7D02670E99200F8BCC0 /* Expensify.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Expensify.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		598BC7D32670E99200F8BCC0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -48,8 +46,7 @@
 			isa = PBXGroup;
 			children = (
 				598BC7C82670E99100F8BCC0 /* ExpensifyApp.swift */,
-				598BC7C92670E99100F8BCC0 /* ContentView.swift */,
-				598BC7CA2670E99100F8BCC0 /* Persistence.swift */,
+				598BC7C92670E99100F8BCC0 /* MainView.swift */,
 				598BC7CB2670E99200F8BCC0 /* Assets.xcassets */,
 				598BC7C62670E99100F8BCC0 /* Expensify.xcdatamodeld */,
 			);
@@ -141,9 +138,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				598BC7DC2670E99200F8BCC0 /* Expensify.xcdatamodeld in Sources */,
-				598BC7E22670E99200F8BCC0 /* Persistence.swift in Sources */,
 				598BC7DE2670E99200F8BCC0 /* ExpensifyApp.swift in Sources */,
-				598BC7E02670E99200F8BCC0 /* ContentView.swift in Sources */,
+				598BC7E02670E99200F8BCC0 /* MainView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
