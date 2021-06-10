@@ -1,6 +1,8 @@
 import SwiftUI
 
 struct ChartView: View {
+    @ObservedObject var expensifyData: ExpensifyData
+
     var body: some View {
         ZStack {
             BackgroundView()

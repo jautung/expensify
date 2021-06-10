@@ -1,14 +1,15 @@
 import SwiftUI
 
 struct CategoriesView: View {
-    @Binding var categories: Array<String>
+    @ObservedObject var expensifyData: ExpensifyData
     @State var addCategoryShowAlert: Bool = false
     @State var editCategoryShowAlert: Bool = false
-    @State var editCategoryIndex: Int = -1
+    @State var editCategoryId: String = ""
     @State var deleteCategoryShowAlert: Bool = false
-    @State var deleteCategoryIndex: Int = -1
+    @State var deleteCategoryId: String = ""
 
     var body: some View {
+        let categories = expensifyData.getCategories()
         ZStack {
             BackgroundView()
             VStack {
@@ -19,13 +20,13 @@ struct CategoriesView: View {
                             CustomDivider()
                             HStack {
                                 Spacer()
-                                H2Text(text: categories[categoryIndex]).frame(width: 280, height: 40, alignment: .leading)
+                                H2Text(text: categories[categoryIndex].name).frame(width: 280, height: 40, alignment: .leading)
                                 Button(action: { // edit button
-                                    editCategoryIndex = categoryIndex
+                                    editCategoryId = categories[categoryIndex].id
                                     editCategoryShowAlert = true
                                 }) { SystemImage(name: "pencil.circle.fill", size: 30) }
                                 Button(action: { // delete button
-                                    deleteCategoryIndex = categoryIndex
+                                    deleteCategoryId = categories[categoryIndex].id
                                     deleteCategoryShowAlert = true
                                 }) { SystemImage(name: "xmark.circle.fill", size: 30) }
                                 Spacer(minLength: 5)
@@ -45,32 +46,32 @@ struct CategoriesView: View {
                     message: "",
                     confirmation: "Add",
                     placeholder: "New category",
-                    submitCallback: { (addCategory: String) in
-                        categories.append(addCategory)
+                    submitCallback: { (newName: String) in
+                        expensifyData.addCategory(newName: newName)
                     }
                 )
             }
             if editCategoryShowAlert {
                 AlertControlView(
                     showAlert: $editCategoryShowAlert,
-                    title: "Edit Category (\(categories[editCategoryIndex]))",
-                    message: "Warning: This will modify XXX expense entries!",
+                    title: "Edit Category (\(expensifyData.getCategory(id: editCategoryId)))",
+                    message: "Warning: This will modify \(expensifyData.getCategoryCount(id: editCategoryId)) expense entries!",
                     confirmation: "Edit",
                     placeholder: "New name",
-                    submitCallback: { (editedName: String) in
-                        categories[editCategoryIndex] = editedName
+                    submitCallback: { (newName: String) in
+                        expensifyData.editCategory(id: editCategoryId, newName: newName)
                     }
                 )
             }
             if deleteCategoryShowAlert {
                 AlertControlView(
                     showAlert: $deleteCategoryShowAlert,
-                    title: "Delete Category (\(categories[deleteCategoryIndex]))",
-                    message: "Warning: This will irreversibly move XXX expense entries to 'Others'!",
+                    title: "Delete Category (\(expensifyData.getCategory(id: deleteCategoryId)))",
+                    message: "Warning: This will irreversibly move \(expensifyData.getCategoryCount(id: deleteCategoryId)) expense entries to 'Others'!",
                     confirmation: "Delete",
                     placeholder: nil,
                     submitCallback: { _ in
-                        categories.remove(at: deleteCategoryIndex)
+                        expensifyData.deleteCategory(id: deleteCategoryId)
                     }
                 )
             }

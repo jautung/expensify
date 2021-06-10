@@ -1,12 +1,12 @@
 import SwiftUI
 
 struct FormView: View {
-    @Binding var categories: Array<String>
+    @ObservedObject var expensifyData: ExpensifyData
     @State var date: Date = Date()
     @State var amount: String = ""
     @State var amountError: Bool = false
     @State var currency: String = "USD"
-    @State var category = "Select a category"
+    @State var categoryId = ""
     @State var categoryError: Bool = false
     @State var remarks: String = ""
     
@@ -33,14 +33,20 @@ struct FormView: View {
                             .multilineTextAlignment(.center)
                             .keyboardType(.decimalPad)
                             .foregroundColor(.black)
-                        CustomPicker(selectedItem: $currency, items: ["USD", "SGD"])
+                        CustomPicker(selectedItemId: $currency, itemIds: ["USD", "SGD"], displayer: { itemId in
+                            return itemId
+                        })
                     }
                     CustomDivider()
                 }
 
                 VStack {
                     if !categoryError { H2Text(text: "Category") } else { H2TextError(text: "Category") }
-                    CustomPicker(selectedItem: $category, items: categories + ["Others"])
+                    CustomPicker(selectedItemId: $categoryId, itemIds: expensifyData.getCategoryIds() + ["__OTHERS__"], displayer: { itemId in
+                        if itemId == "" { return "Select a category" }
+                        else if itemId == "__OTHERS__" { return "Others" }
+                        else { return expensifyData.getCategory(id: itemId) }
+                    })
                     CustomDivider()
                 }
                 
@@ -54,9 +60,9 @@ struct FormView: View {
                 
                 CustomButton(text: "Submit", callback: {
                     amountError = !amountCheck(amount: amount)
-                    categoryError = (category == "Select a category")
+                    categoryError = (categoryId == "")
                     if amountError || categoryError { return }
-                    print(date, amount, currency, category, remarks)
+                    expensifyData.addExpense(date: date, amount: Float(amount)!, currency: currency, categoryId: categoryId, remarks: remarks)
                 })
 
                 Spacer() // flushes VStack to the top
@@ -65,15 +71,9 @@ struct FormView: View {
     }
     
     func amountCheck(amount: String) -> Bool {
-        if amount.count <= 0 { return false }
+        if amount.count <= 0 { return false } // empty string
         if !CharacterSet(charactersIn: amount).isSubset(of: CharacterSet(charactersIn: ".0123456789")) { return false }
-        var periodCount = 0
-        for char in amount {
-            if char == "." {
-                periodCount += 1
-                if periodCount >= 2 { return false }
-            }
-        }
+        if amount.filter({ $0 == "." }).count > 1 { return false }
         return true
     }
 }

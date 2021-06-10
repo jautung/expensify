@@ -71,13 +71,14 @@ struct SystemImage: View {
 }
 
 struct CustomPicker: View {
-    @Binding var selectedItem: String
-    var items: Array<String>
+    @Binding var selectedItemId: String
+    var itemIds: Array<String>
+    var displayer: (String) -> String // map from id to displayable name
     var body: some View {
         HStack {
-            Picker(selectedItem, selection: $selectedItem) {
-                ForEach(items, id: \.self) {
-                    Text($0).foregroundColor(.black)
+            Picker(displayer(selectedItemId), selection: $selectedItemId) {
+                ForEach(itemIds, id: \.self) {
+                    Text(displayer($0)).foregroundColor(.black)
                 }
             }.pickerStyle(MenuPickerStyle()).frame(height: 40)
             SystemImage(name: "arrowtriangle.down.fill", size: 10)
