@@ -23,18 +23,18 @@ struct CategoriesView: View {
                                 Button(action: { // edit button
                                     editCategoryIndex = categoryIndex
                                     editCategoryShowAlert = true
-                                }) { SystemImage(name: "pencil.circle.fill") }
+                                }) { SystemImage(name: "pencil.circle.fill", size: 30) }
                                 Button(action: { // delete button
                                     deleteCategoryIndex = categoryIndex
                                     deleteCategoryShowAlert = true
-                                }) { SystemImage(name: "xmark.circle.fill") }
+                                }) { SystemImage(name: "xmark.circle.fill", size: 30) }
                                 Spacer(minLength: 5)
                             }
                         }
                         CustomDivider()
                         Button(action: { // add button
                             addCategoryShowAlert = true
-                        }) { SystemImage(name: "plus.circle.fill") }
+                        }) { SystemImage(name: "plus.circle.fill", size: 30) }
                     }
                 }
             }

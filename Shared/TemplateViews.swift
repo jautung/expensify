@@ -26,6 +26,16 @@ struct H2Text: View {
     }
 }
 
+struct H2TextError: View {
+    var text: String
+    var body: some View {
+        Text(text)
+            .padding(5)
+            .font(.system(size: 24, weight: .regular))
+            .foregroundColor(Color("TextErrorColor"))
+    }
+}
+
 struct CustomButton: View {
     var text: String
     var callback: () -> Void
@@ -49,13 +59,29 @@ struct CustomDivider: View {
 
 struct SystemImage: View {
     var name: String
+    var size: CGFloat
     var body: some View {
         Image(systemName: name)
             .resizable()
             .scaledToFit()
-            .frame(width: 30, height: 30)
-            .padding(5)
+            .frame(width: size, height: size)
+            .padding(size/6.0)
             .foregroundColor(Color("SystemImageColor"))
+    }
+}
+
+struct CustomPicker: View {
+    @Binding var selectedItem: String
+    var items: Array<String>
+    var body: some View {
+        HStack {
+            Picker(selectedItem, selection: $selectedItem) {
+                ForEach(items, id: \.self) {
+                    Text($0).foregroundColor(.black)
+                }
+            }.pickerStyle(MenuPickerStyle()).frame(height: 40)
+            SystemImage(name: "arrowtriangle.down.fill", size: 10)
+        }
     }
 }
 
