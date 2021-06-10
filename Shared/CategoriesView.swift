@@ -16,9 +16,10 @@ struct CategoriesView: View {
                 ScrollView(showsIndicators: true) {
                     VStack {
                         ForEach(categories.indices, id: \.self) { categoryIndex in
+                            CustomDivider()
                             HStack {
                                 Spacer()
-                                H2Text(text: categories[categoryIndex]).frame(width: 280, height: 60, alignment: .leading)
+                                H2Text(text: categories[categoryIndex]).frame(width: 280, height: 40, alignment: .leading)
                                 Button(action: { // edit button
                                     editCategoryIndex = categoryIndex
                                     editCategoryShowAlert = true
@@ -30,6 +31,7 @@ struct CategoriesView: View {
                                 Spacer(minLength: 5)
                             }
                         }
+                        CustomDivider()
                         Button(action: { // add button
                             addCategoryShowAlert = true
                         }) { SystemImage(name: "plus.circle.fill") }
@@ -41,6 +43,7 @@ struct CategoriesView: View {
                     showAlert: $addCategoryShowAlert,
                     title: "Add Category",
                     message: "",
+                    confirmation: "Add",
                     placeholder: "New category",
                     submitCallback: { (addCategory: String) in
                         categories.append(addCategory)
@@ -52,6 +55,7 @@ struct CategoriesView: View {
                     showAlert: $editCategoryShowAlert,
                     title: "Edit Category (\(categories[editCategoryIndex]))",
                     message: "Warning: This will modify XXX expense entries!",
+                    confirmation: "Edit",
                     placeholder: "New name",
                     submitCallback: { (editedName: String) in
                         categories[editCategoryIndex] = editedName
@@ -63,6 +67,7 @@ struct CategoriesView: View {
                     showAlert: $deleteCategoryShowAlert,
                     title: "Delete Category (\(categories[deleteCategoryIndex]))",
                     message: "Warning: This will irreversibly move XXX expense entries to 'Others'!",
+                    confirmation: "Delete",
                     placeholder: nil,
                     submitCallback: { _ in
                         categories.remove(at: deleteCategoryIndex)

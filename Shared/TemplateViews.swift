@@ -10,7 +10,7 @@ struct H1Text: View {
     var text: String
     var body: some View {
         Text(text)
-            .padding(5)
+            .padding(30)
             .font(.system(size: 36, weight: .bold))
             .foregroundColor(Color("TextColor"))
     }
@@ -23,6 +23,27 @@ struct H2Text: View {
             .padding(5)
             .font(.system(size: 24, weight: .regular))
             .foregroundColor(Color("TextColor"))
+    }
+}
+
+struct CustomButton: View {
+    var text: String
+    var callback: () -> Void
+    var body: some View {
+        Button(action: callback) {
+            Text(text)
+                .frame(width: 280, height: 60)
+                .font(.system(size: 24, weight: .regular))
+                .background(Color("ButtonColor"))
+                .cornerRadius(10)
+                .shadow(radius: 5)
+        }.padding(20)
+    }
+}
+
+struct CustomDivider: View {
+    var body: some View {
+        Divider().padding(10)
     }
 }
 
@@ -42,6 +63,7 @@ struct AlertControlView: UIViewControllerRepresentable { // adapted from https:/
     @Binding var showAlert: Bool
     var title: String
     var message: String
+    var confirmation: String
     var placeholder: String? // nil if a text field is not required
     var submitCallback: (String) -> Void
 
@@ -69,7 +91,7 @@ struct AlertControlView: UIViewControllerRepresentable { // adapted from https:/
                 }
             })
             
-            alert.addAction(UIAlertAction(title: NSLocalizedString("Submit", comment: ""), style: .default) { _ in
+            alert.addAction(UIAlertAction(title: NSLocalizedString(confirmation, comment: ""), style: .default) { _ in
                 if placeholder != nil { // alert with text field
                     if let textField = alert.textFields?.first, let text = textField.text {
                         submitCallback(text)
