@@ -114,8 +114,8 @@ final class ExpensifyData: ObservableObject, Codable {
         }
     }
     
-    func getExpenses() -> Array<Expense> {
-        return expenses
+    func getExpensesReverseChrono() -> Array<Expense> {
+        return expenses.sorted { $0.date > $1.date }
     }
 
     func getExpense(id: String) -> Expense {

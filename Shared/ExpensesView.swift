@@ -6,14 +6,14 @@ struct ExpensesView: View {
     @State var deleteExpenseId: String = ""
 
     var body: some View {
-        let expenses = expensifyData.getExpenses()
+        let expenses = expensifyData.getExpensesReverseChrono()
         ZStack {
             BackgroundView()
             VStack {
                 H1Text(text: "Expenses")
                 ScrollView(showsIndicators: true) {
                     VStack {
-                        ForEach(expenses.indices.reversed(), id: \.self) { expenseIndex in
+                        ForEach(expenses.indices, id: \.self) { expenseIndex in
                             CustomDivider(size: 2)
                             HStack {
                                 Spacer()
