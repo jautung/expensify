@@ -36,6 +36,16 @@ struct H2TextError: View {
     }
 }
 
+struct PText: View {
+    var text: String
+    var body: some View {
+        Text(text)
+            .padding(2)
+            .font(.system(size: 12, weight: .regular))
+            .foregroundColor(Color("TextColor"))
+    }
+}
+
 struct CustomButton: View {
     var text: String
     var callback: () -> Void
@@ -52,8 +62,9 @@ struct CustomButton: View {
 }
 
 struct CustomDivider: View {
+    var size: CGFloat
     var body: some View {
-        Divider().padding(10)
+        Divider().padding(size)
     }
 }
 

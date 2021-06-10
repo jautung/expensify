@@ -40,6 +40,7 @@ class ExpensifyData: ObservableObject {
     }
 
     func getCategory(id: String) -> String {
+        if id == "__OTHERS__" { return "Others" }
         for categoryIndex in 0..<categories.count {
             if categories[categoryIndex].id == id {
                 return categories[categoryIndex].name
@@ -70,5 +71,18 @@ class ExpensifyData: ObservableObject {
                 return
             }
         }
+    }
+    
+    func getExpenses() -> Array<(id: String, date: Date, amount: Float, currency: String, categoryId: String, remarks: String)> {
+        return expenses
+    }
+
+    func getExpense(id: String) -> (id: String, date: Date, amount: Float, currency: String, categoryId: String, remarks: String) {
+        for expenseIndex in 0..<expenses.count {
+            if expenses[expenseIndex].id == id {
+                return expenses[expenseIndex]
+            }
+        }
+        return (id: "", date: Date(), amount: 0.0, currency: "", categoryId: "", remarks: "")
     }
 }

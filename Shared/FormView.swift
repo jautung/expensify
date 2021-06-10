@@ -16,13 +16,13 @@ struct FormView: View {
             VStack {
                 VStack {
                     H1Text(text: "Add a New Expense")
-                    CustomDivider()
+                    CustomDivider(size: 10)
                 }
 
                 VStack {
                     H2Text(text: "Date & Time")
                     DatePicker(selection: $date, label: { EmptyView() }).labelsHidden()
-                    CustomDivider()
+                    CustomDivider(size: 10)
                 }
 
                 VStack {
@@ -37,7 +37,7 @@ struct FormView: View {
                             return itemId
                         })
                     }
-                    CustomDivider()
+                    CustomDivider(size: 10)
                 }
 
                 VStack {
@@ -47,7 +47,7 @@ struct FormView: View {
                         else if itemId == "__OTHERS__" { return "Others" }
                         else { return expensifyData.getCategory(id: itemId) }
                     })
-                    CustomDivider()
+                    CustomDivider(size: 10)
                 }
                 
                 VStack {
@@ -55,7 +55,7 @@ struct FormView: View {
                     TextField("Remarks", text: $remarks)
                         .multilineTextAlignment(.center)
                         .foregroundColor(.black)
-                    CustomDivider()
+                    CustomDivider(size: 10)
                 }
                 
                 CustomButton(text: "Submit", callback: {

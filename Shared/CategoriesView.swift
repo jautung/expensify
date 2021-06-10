@@ -17,7 +17,7 @@ struct CategoriesView: View {
                 ScrollView(showsIndicators: true) {
                     VStack {
                         ForEach(categories.indices, id: \.self) { categoryIndex in
-                            CustomDivider()
+                            CustomDivider(size: 10)
                             HStack {
                                 Spacer()
                                 H2Text(text: categories[categoryIndex].name).frame(width: 280, height: 40, alignment: .leading)
@@ -32,7 +32,7 @@ struct CategoriesView: View {
                                 Spacer(minLength: 5)
                             }
                         }
-                        CustomDivider()
+                        CustomDivider(size: 10)
                         Button(action: { // add button
                             addCategoryShowAlert = true
                         }) { SystemImage(name: "plus.circle.fill", size: 30) }
