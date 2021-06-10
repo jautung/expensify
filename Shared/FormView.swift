@@ -21,3 +21,11 @@ struct FormView: View {
         print("commit")
     }
 }
+
+// DEBUGGING PREVIEW BELOW THIS LINE
+
+struct FormViewPreview: PreviewProvider {
+    static var previews: some View {
+        FormView()
+    }
+}

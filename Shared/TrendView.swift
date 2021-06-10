@@ -8,3 +8,11 @@ struct TrendView: View {
         }
     }
 }
+
+// DEBUGGING PREVIEW BELOW THIS LINE
+
+struct TrendViewPreview: PreviewProvider {
+    static var previews: some View {
+        TrendView()
+    }
+}
