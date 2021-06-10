@@ -128,7 +128,7 @@ final class ExpensifyData: ObservableObject, Codable {
     }
 }
 
-// to retrieve backup .json files
+// to retrieve backup .json files: https://stackoverflow.com/questions/38064042/access-files-in-var-mobile-containers-data-application-without-jailbreaking-iph
 func storeExpensifyData(expensifyData: ExpensifyData) {
     do {
         let encoder = JSONEncoder()
