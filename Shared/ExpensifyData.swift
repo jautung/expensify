@@ -127,22 +127,103 @@ final class ExpensifyData: ObservableObject, Codable {
         return Expense(id: "", date: Date(), amount: 0.0, currency: "", categoryId: "", remarks: "")
     }
     
-    func getFullCsvExport() -> String {
+    func getFullDataExport() -> String {
         let formatter = DateFormatter()
         formatter.dateFormat = "M/dd/yyyy HH:mm:ss"
 
-        var fullCsvExport: String = "categoryId|name\n"
+        var fullDataExport: String = "categoryId|name\n"
         for categoryIndex in 0..<categories.count {
             let category = categories[categoryIndex]
-            fullCsvExport += "\(category.id)|\(category.name)\n"
+            fullDataExport += "\(category.id)|\(category.name)\n"
         }
-        fullCsvExport += "\nexpenseId|dateTime|amount|currency|categoryId|remarks\n"
+        fullDataExport += "\nexpenseId|dateTime|amount|currency|categoryId|remarks\n"
 
         for expenseIndex in 0..<expenses.count {
             let expense = expenses[expenseIndex]
-            fullCsvExport += "\(expense.id)|\(formatter.string(from: expense.date))|\(expense.amount)|\(expense.currency)|\(expense.categoryId)|\(expense.remarks)\n"
+            fullDataExport += "\(expense.id)|\(formatter.string(from: expense.date))|\(expense.amount)|\(expense.currency)|\(expense.categoryId)|\(expense.remarks)\n"
         }
-        return fullCsvExport
+        return fullDataExport
+    }
+    
+    func getTrendData(interval: String, categoryId: String) -> Array<(interval: String, amount: Float)> {
+        if expenses.count <= 0 { return [] } // no data to get
+
+        let expensesChrono = expenses.sorted { $0.date < $1.date }
+        let dateFirst = expensesChrono.first!.date
+        let dateLast = expensesChrono.last!.date
+
+        var dateIntervalStartComponents = DateComponents()
+        dateIntervalStartComponents.hour = 0
+        dateIntervalStartComponents.minute = 0
+        dateIntervalStartComponents.second = 0
+        dateIntervalStartComponents.nanosecond = 0
+        switch interval {
+        case "Daily":
+            break
+        case "Weekly", "Biweekly":
+            dateIntervalStartComponents.weekday = 1
+        case "Monthly":
+            dateIntervalStartComponents.day = 1
+        case "Yearly":
+            dateIntervalStartComponents.day = 1
+            dateIntervalStartComponents.month = 1
+        default:
+            print("error: invalid interval specification (\(interval))")
+            return []
+        }
+
+        let dateStart: Date = Calendar.current.nextDate(after: dateFirst, matching: dateIntervalStartComponents, matchingPolicy: .nextTime, repeatedTimePolicy: .first, direction: .backward)!
+        
+        var dateIntervalStarts: Array<Date> = [dateStart]
+        while dateIntervalStarts.last! <= dateLast {
+            var dateNext: Date = Calendar.current.nextDate(after: dateIntervalStarts.last!, matching: dateIntervalStartComponents, matchingPolicy: .nextTime, repeatedTimePolicy: .first, direction: .forward)!
+            if interval == "Biweekly" {
+                dateNext = Calendar.current.nextDate(after: dateNext, matching: dateIntervalStartComponents, matchingPolicy: .nextTime, repeatedTimePolicy: .first, direction: .forward)!
+            }
+            dateIntervalStarts.append(dateNext)
+        }
+
+        var amounts: Array<Float> = Array(repeating: 0.0, count: dateIntervalStarts.count-1)
+        for expenseIndex in 0..<expenses.count {
+            let expense: Expense = expenses[expenseIndex]
+            if categoryId != "__ALL__" && categoryId != expense.categoryId { continue }
+            for dateIntervalIndex in 0..<amounts.count {
+                if expense.date >= dateIntervalStarts[dateIntervalIndex] && expense.date < dateIntervalStarts[dateIntervalIndex+1] {
+                    var exchangeRate: Float = 0.0 // dummy
+                    switch expense.currency {
+                    case "USD":
+                        exchangeRate = 1.0
+                    case "SGD":
+                        exchangeRate = 0.76 // maybe switch to an API in the future
+                    default:
+                        print("error: unknown currency (\(expense.currency))")
+                        break
+                    }
+                    amounts[dateIntervalIndex] += expense.amount * exchangeRate
+                    break
+                }
+            }
+        }
+
+        let formatter = DateFormatter()
+        formatter.dateFormat = "M/dd/yyyy"
+        
+        var trendData: Array<(interval: String, amount: Float)> = []
+        for dateIntervalIndex in 0..<amounts.count {
+            trendData.append((interval: "[\(formatter.string(from: dateIntervalStarts[dateIntervalIndex])), \(formatter.string(from: dateIntervalStarts[dateIntervalIndex+1])))", amount: amounts[dateIntervalIndex]))
+        }
+
+        return trendData
+    }
+    
+    func getTrendDataExport(interval: String, categoryId: String) -> String {
+        let trendData = getTrendData(interval: interval, categoryId: categoryId)
+        var trendDataExport: String = "interval|amount\n"
+        for pointIndex in 0..<trendData.count {
+            let point = trendData[pointIndex]
+            trendDataExport += "\(point.interval)|\(point.amount)\n"
+        }
+        return trendDataExport
     }
 }
 

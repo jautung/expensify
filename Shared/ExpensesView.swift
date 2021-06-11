@@ -15,7 +15,7 @@ struct ExpensesView: View {
                 HStack {
                     H1Text(text: "Expenses")
                     Button(action: {
-                        EmailHelper.shared.sendEmail(subject: "Expensify Data", body: expensifyData.getFullCsvExport(), to: [])
+                        EmailHelper.shared.sendEmail(subject: "Expensify Data", body: expensifyData.getFullDataExport(), to: [])
                     }) { SystemImage(name: "square.and.arrow.down", size: 25) }
                 }
                 ScrollView(showsIndicators: true) {
