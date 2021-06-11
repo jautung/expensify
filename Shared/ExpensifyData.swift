@@ -133,9 +133,7 @@ func storeExpensifyData(expensifyData: ExpensifyData) {
     do {
         let encoder = JSONEncoder()
         let encodedExpensifyData = try encoder.encode(expensifyData)
-        let url = getDocumentsDirectory().appendingPathComponent("expensifyData.json")
-        try encodedExpensifyData.write(to: url, options: [])
-        print("expensify data stored in \(url)")
+        try encodedExpensifyData.write(to: getExpensifyDataUrl(), options: [])
     } catch {
         print("unable to store expensify data (\(error))")
     }
@@ -144,10 +142,8 @@ func storeExpensifyData(expensifyData: ExpensifyData) {
 func loadExpensifyData() -> ExpensifyData {
     do {
         let decoder = JSONDecoder()
-        let url = getDocumentsDirectory().appendingPathComponent("expensifyData.json")
-        let encodedExpensifyData = try Data(contentsOf: url)
+        let encodedExpensifyData = try Data(contentsOf: getExpensifyDataUrl())
         let expensifyData = try decoder.decode(ExpensifyData.self, from: encodedExpensifyData)
-        print("expensify data loaded from \(url)")
         return expensifyData
     } catch {
         print("unable to load expensify data (\(error))")
@@ -158,4 +154,8 @@ func loadExpensifyData() -> ExpensifyData {
 func getDocumentsDirectory() -> URL {
     let paths = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
     return paths[0]
+}
+
+func getExpensifyDataUrl() -> URL {
+    return getDocumentsDirectory().appendingPathComponent("expensifyData.json")
 }
