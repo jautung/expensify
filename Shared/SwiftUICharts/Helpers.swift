@@ -1,11 +1,4 @@
-// copied from https://github.com/AppPear/ChartView
-
-//
-//  File.swift
-//
-//
-//  Created by András Samu on 2019. 07. 19..
-//
+// this library is copied from https://github.com/AppPear/ChartView
 
 import Foundation
 import SwiftUI

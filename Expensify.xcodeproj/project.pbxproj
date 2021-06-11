@@ -134,11 +134,11 @@
 		59444EBF26735DB500466E7D /* Tabs */ = {
 			isa = PBXGroup;
 			children = (
-				591EFEAC267217AD0051AF57 /* ExpensesView.swift */,
-				591EFEA22671BC970051AF57 /* ChartView.swift */,
 				591EFEA42671C7060051AF57 /* CategoriesView.swift */,
-				591EFEA02671BC810051AF57 /* TrendView.swift */,
 				591EFE9E2671BC510051AF57 /* FormView.swift */,
+				591EFEAC267217AD0051AF57 /* ExpensesView.swift */,
+				591EFEA02671BC810051AF57 /* TrendView.swift */,
+				591EFEA22671BC970051AF57 /* ChartView.swift */,
 			);
 			path = Tabs;
 			sourceTree = "<group>";
