@@ -12,7 +12,12 @@ struct ExpensesView: View {
         ZStack {
             BackgroundView()
             VStack {
-                H1Text(text: "Expenses")
+                HStack {
+                    H1Text(text: "Expenses")
+                    Button(action: {
+                        EmailHelper.shared.sendEmail(subject: "Expensify Data", body: expensifyData.getFullCsvExport(), to: [])
+                    }) { SystemImage(name: "square.and.arrow.down", size: 25) }
+                }
                 ScrollView(showsIndicators: true) {
                     VStack {
                         ForEach(expenses.indices, id: \.self) { expenseIndex in

@@ -126,6 +126,24 @@ final class ExpensifyData: ObservableObject, Codable {
         }
         return Expense(id: "", date: Date(), amount: 0.0, currency: "", categoryId: "", remarks: "")
     }
+    
+    func getFullCsvExport() -> String {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "M/dd/yyyy HH:mm:ss"
+
+        var fullCsvExport: String = "categoryId|name\n"
+        for categoryIndex in 0..<categories.count {
+            let category = categories[categoryIndex]
+            fullCsvExport += "\(category.id)|\(category.name)\n"
+        }
+        fullCsvExport += "\nexpenseId|dateTime|amount|currency|categoryId|remarks\n"
+
+        for expenseIndex in 0..<expenses.count {
+            let expense = expenses[expenseIndex]
+            fullCsvExport += "\(expense.id)|\(formatter.string(from: expense.date))|\(expense.amount)|\(expense.currency)|\(expense.categoryId)|\(expense.remarks)\n"
+        }
+        return fullCsvExport
+    }
 }
 
 // to retrieve backup .json files: https://stackoverflow.com/questions/38064042/access-files-in-var-mobile-containers-data-application-without-jailbreaking-iph

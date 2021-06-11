@@ -14,6 +14,7 @@
 		591EFEA72671DD360051AF57 /* TemplateViews.swift in Sources */ = {isa = PBXBuildFile; fileRef = 591EFEA62671DD360051AF57 /* TemplateViews.swift */; };
 		591EFEAB2672143A0051AF57 /* ExpensifyData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 591EFEAA2672143A0051AF57 /* ExpensifyData.swift */; };
 		591EFEAD267217AD0051AF57 /* ExpensesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 591EFEAC267217AD0051AF57 /* ExpensesView.swift */; };
+		591EFEAF26730B780051AF57 /* EmailHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 591EFEAE26730B780051AF57 /* EmailHelper.swift */; };
 		598BC7DC2670E99200F8BCC0 /* Expensify.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 598BC7C62670E99100F8BCC0 /* Expensify.xcdatamodeld */; };
 		598BC7DE2670E99200F8BCC0 /* ExpensifyApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 598BC7C82670E99100F8BCC0 /* ExpensifyApp.swift */; };
 		598BC7E02670E99200F8BCC0 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 598BC7C92670E99100F8BCC0 /* MainView.swift */; };
@@ -28,6 +29,7 @@
 		591EFEA62671DD360051AF57 /* TemplateViews.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TemplateViews.swift; sourceTree = "<group>"; };
 		591EFEAA2672143A0051AF57 /* ExpensifyData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpensifyData.swift; sourceTree = "<group>"; };
 		591EFEAC267217AD0051AF57 /* ExpensesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpensesView.swift; sourceTree = "<group>"; };
+		591EFEAE26730B780051AF57 /* EmailHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmailHelper.swift; sourceTree = "<group>"; };
 		598BC7C72670E99100F8BCC0 /* Shared.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Shared.xcdatamodel; sourceTree = "<group>"; };
 		598BC7C82670E99100F8BCC0 /* ExpensifyApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpensifyApp.swift; sourceTree = "<group>"; };
 		598BC7C92670E99100F8BCC0 /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
@@ -70,6 +72,7 @@
 				598BC7CB2670E99200F8BCC0 /* Assets.xcassets */,
 				598BC7C62670E99100F8BCC0 /* Expensify.xcdatamodeld */,
 				591EFEAA2672143A0051AF57 /* ExpensifyData.swift */,
+				591EFEAE26730B780051AF57 /* EmailHelper.swift */,
 			);
 			path = Shared;
 			sourceTree = "<group>";
@@ -159,6 +162,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				591EFEAB2672143A0051AF57 /* ExpensifyData.swift in Sources */,
+				591EFEAF26730B780051AF57 /* EmailHelper.swift in Sources */,
 				591EFEA72671DD360051AF57 /* TemplateViews.swift in Sources */,
 				591EFE9F2671BC510051AF57 /* FormView.swift in Sources */,
 				591EFEAD267217AD0051AF57 /* ExpensesView.swift in Sources */,
