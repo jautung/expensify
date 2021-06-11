@@ -1,4 +1,4 @@
-// this library is copied from https://github.com/AppPear/ChartView
+// this library is adapted from https://github.com/AppPear/ChartView
 
 import Foundation
 import SwiftUI
