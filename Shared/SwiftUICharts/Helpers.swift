@@ -1,3 +1,5 @@
+// copied from https://github.com/AppPear/ChartView
+
 //
 //  File.swift
 //
