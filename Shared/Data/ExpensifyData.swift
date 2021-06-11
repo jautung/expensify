@@ -197,17 +197,7 @@ final class ExpensifyData: ObservableObject, Codable {
             if categoryId != "__ALL__" && categoryId != expense.categoryId { continue }
             for dateIntervalIndex in 0..<amounts.count {
                 if expense.date >= dateIntervalStarts[dateIntervalIndex] && expense.date < dateIntervalStarts[dateIntervalIndex+1] {
-                    var exchangeRate: Float = 0.0 // dummy
-                    switch expense.currency {
-                    case "USD":
-                        exchangeRate = 1.0
-                    case "SGD":
-                        exchangeRate = 0.76 // maybe switch to an API in the future
-                    default:
-                        print("error: unknown currency (\(expense.currency))")
-                        break
-                    }
-                    amounts[dateIntervalIndex] += expense.amount * exchangeRate
+                    amounts[dateIntervalIndex] += convertToUsd(amount: expense.amount, currency: expense.currency)
                     break
                 }
             }
@@ -232,6 +222,55 @@ final class ExpensifyData: ObservableObject, Codable {
             trendDataExport += "\(point.interval)|\(point.amount)\n"
         }
         return trendDataExport
+    }
+
+    func getBreakdownData(startDate: Date, endDate: Date) -> Array<(categoryId: String, amount: Float)> {
+        var amounts: Array<Float> = Array(repeating: 0.0, count: categories.count+1) // +1 for __OTHERS__
+        for expenseIndex in 0..<expenses.count {
+            let expense: Expense = expenses[expenseIndex]
+            if expense.date < startDate || expense.date >= endDate { continue }
+            if expense.categoryId == "__OTHERS__" {
+                amounts[categories.count] += convertToUsd(amount: expense.amount, currency: expense.currency)
+            } else {
+                for categoryIndex in 0..<categories.count {
+                    if categories[categoryIndex].id == expense.categoryId {
+                        amounts[categoryIndex] += convertToUsd(amount: expense.amount, currency: expense.currency)
+                        break
+                    }
+                }
+            }
+        }
+
+        var breakdownData: Array<(categoryId: String, amount: Float)> = []
+        for categoryIndex in 0..<amounts.count {
+            breakdownData.append((categoryId: "\(categoryIndex == categories.count ? "__OTHERS__" : categories[categoryIndex].id)", amount: amounts[categoryIndex]))
+        }
+
+        return breakdownData
+    }
+
+    func getBreakdownDataExport(startDate: Date, endDate: Date) -> String {
+        let breakdownData = getBreakdownData(startDate: startDate, endDate: endDate)
+        var breakdownDataExport: String = "categoryId|category|amount\n"
+        for pointIndex in 0..<breakdownData.count {
+            let point = breakdownData[pointIndex]
+            breakdownDataExport += "\(point.categoryId)|\(getCategory(id: point.categoryId))|\(point.amount)\n"
+        }
+        return breakdownDataExport
+    }
+
+    func convertToUsd(amount: Float, currency: String) -> Float {
+        var exchangeRate: Float = 0.0 // dummy
+        switch currency {
+        case "USD":
+            exchangeRate = 1.0
+        case "SGD":
+            exchangeRate = 0.76 // maybe switch to an API in the future
+        default:
+            print("error: unknown currency (\(currency))")
+            break
+        }
+        return amount * exchangeRate
     }
 }
 

@@ -12,7 +12,7 @@ struct ChartView: View {
                 HStack {
                     H1Text(text: "Cat. Breakdown")
                     Button(action: {
-                        EmailHelper.shared.sendEmail(subject: "Expensify Category Breakdown Data for ()", body: "", to: []) // TODO
+                        EmailHelper.shared.sendEmail(subject: "Expensify Category Breakdown Data for \(displayDate(date: startDate)) - \(displayDate(date: endDate))", body: expensifyData.getBreakdownDataExport(startDate: startDate, endDate: endDate), to: [])
                     }) { SystemImage(name: "square.and.arrow.down", size: 25) }
                 }
 
