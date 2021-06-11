@@ -44,7 +44,7 @@ public struct PieChartRow : View {
         GeometryReader { geometry in
             ZStack{
                 ForEach(0..<self.slices.count){ i in
-                    PieChartCell(rect: geometry.frame(in: .local), startDeg: self.slices[i].startDeg, endDeg: self.slices[i].endDeg, index: i, backgroundColor: self.backgroundColor,accentColor: self.accentColor)
+                    PieChartCell(rect: geometry.frame(in: .local), startDeg: self.slices[i].startDeg, endDeg: self.slices[i].endDeg, index: i, backgroundColor: self.backgroundColor, accentColor: lightenColorN(color: self.accentColor, n: i))
                         .scaleEffect(self.currentTouchedIndex == i ? 1.1 : 1)
                         .animation(Animation.spring())
                 }
@@ -64,6 +64,16 @@ public struct PieChartRow : View {
                             self.currentTouchedIndex = -1
                         }))
         }
+    }
+    
+    func lightenColorN(color: Color, n: Int) -> Color {
+        var newColor: Color = color
+        for _ in 0..<n { newColor = lightenColor(color: newColor) }
+        return newColor
+    }
+    
+    func lightenColor(color: Color) -> Color {
+        return color.opacity(0.8)
     }
 }
 
