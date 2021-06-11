@@ -210,7 +210,7 @@ final class ExpensifyData: ObservableObject, Codable {
         
         var trendData: Array<(interval: String, amount: Float)> = []
         for dateIntervalIndex in 0..<amounts.count {
-            trendData.append((interval: "[\(formatter.string(from: dateIntervalStarts[dateIntervalIndex])), \(formatter.string(from: dateIntervalStarts[dateIntervalIndex+1])))", amount: amounts[dateIntervalIndex]))
+            trendData.append((interval: "\(formatter.string(from: dateIntervalStarts[dateIntervalIndex])) - \(formatter.string(from: dateIntervalStarts[dateIntervalIndex+1]))", amount: amounts[dateIntervalIndex]))
         }
 
         return trendData

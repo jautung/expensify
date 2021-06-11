@@ -85,15 +85,28 @@ struct CustomPicker: View {
     @Binding var selectedItemId: String
     var itemIds: Array<String>
     var displayer: (String) -> String // map from id to displayable name
+    var selectedCallback: ((String) -> Void)? // callback everytime a new id is selected
     var body: some View {
         HStack {
-            Picker(displayer(selectedItemId), selection: $selectedItemId) {
+            Picker(displayer(selectedItemId), selection: $selectedItemId.onChange(callback: selectedCallback)) {
                 ForEach(itemIds, id: \.self) {
                     Text(displayer($0)).foregroundColor(.black)
                 }
             }.pickerStyle(MenuPickerStyle()).frame(height: 40)
             SystemImage(name: "arrowtriangle.down.fill", size: 10)
         }
+    }
+}
+
+extension Binding {
+    func onChange(callback: ((Value) -> Void)?) -> Binding<Value> {
+        return Binding(
+            get: { self.wrappedValue },
+            set: { selection in
+                self.wrappedValue = selection
+                if callback != nil { callback!(selection) }
+            }
+        )
     }
 }
 
