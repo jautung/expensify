@@ -35,6 +35,7 @@ public struct PieChartRow : View {
             if oldValue != currentTouchedIndex {
                 showValue = currentTouchedIndex != -1
                 currentValue = showValue ? (categoryId: slices[currentTouchedIndex].label, amount: slices[currentTouchedIndex].value) : (categoryId: "", amount: 0)
+                HapticFeedback.playSelection()
             }
         }
     }

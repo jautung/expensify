@@ -19,13 +19,7 @@ public struct PieChartView : View {
     public var valueSpecifier:String
     
     @State private var showValue = false
-    @State private var currentValue: (categoryId: String, amount: Double) = (categoryId: "", amount: 0) {
-        didSet{
-            if(oldValue != self.currentValue && self.showValue) {
-                HapticFeedback.playSelection()
-            }
-        }
-    }
+    @State private var currentValue: (categoryId: String, amount: Double) = (categoryId: "", amount: 0) { didSet { } }
     
     public init(data: ChartData, title: String, legend: String? = nil, style: ChartStyle = Styles.pieChartStyleOne, form: CGSize? = ChartForm.medium, dropShadow: Bool? = true, cornerImage:Image? = Image(systemName: "chart.pie.fill"), valueSpecifier: String? = "%.1f"){
         self.data = data
