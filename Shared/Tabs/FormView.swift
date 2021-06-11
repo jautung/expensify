@@ -22,7 +22,12 @@ struct FormView: View {
 
                 VStack {
                     H2Text(text: "Date & Time")
-                    DatePicker(selection: $date, label: { EmptyView() }).labelsHidden()
+                    DatePicker(selection: $date, label: { EmptyView() })
+                        .datePickerStyle(WheelDatePickerStyle())
+                        .labelsHidden()
+                        .frame(height: 80)
+                        .clipped()
+                        .scaleEffect(0.8)
                     CustomDivider(size: 10)
                 }
 

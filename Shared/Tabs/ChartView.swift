@@ -16,14 +16,26 @@ struct ChartView: View {
                     }) { SystemImage(name: "square.and.arrow.down", size: 25) }
                 }
 
-                VStack {
-                    H2Text(text: "Start Date")
-                    DatePicker(selection: $startDate, displayedComponents: [.date], label: { EmptyView() }).labelsHidden()
+                HStack {
+                    Spacer(minLength: 20)
+                    H2Text(text: "Start Date: ")
+                    DatePicker(selection: $startDate, displayedComponents: [.date], label: { EmptyView() })
+                        .datePickerStyle(WheelDatePickerStyle())
+                        .labelsHidden()
+                        .frame(width: 280, height: 80)
+                        .clipped()
+                        .scaleEffect(0.75)
                 }
 
-                VStack {
-                    H2Text(text: "End Date")
-                    DatePicker(selection: $endDate, displayedComponents: [.date], label: { EmptyView() }).labelsHidden()
+                HStack {
+                    Spacer(minLength: 20)
+                    H2Text(text: "End Date: ")
+                    DatePicker(selection: $endDate, displayedComponents: [.date], label: { EmptyView() })
+                        .datePickerStyle(WheelDatePickerStyle())
+                        .labelsHidden()
+                        .frame(width: 280, height: 80)
+                        .clipped()
+                        .scaleEffect(0.75)
                 }
 
                 Spacer() // flushes chart to the bottom

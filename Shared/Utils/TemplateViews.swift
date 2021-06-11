@@ -10,7 +10,7 @@ struct H1Text: View {
     var text: String
     var body: some View {
         Text(text)
-            .padding(30)
+            .padding([.top, .bottom], 30)
             .font(.system(size: 36, weight: .bold))
             .foregroundColor(Color("TextColor"))
     }
@@ -20,7 +20,7 @@ struct H2Text: View {
     var text: String
     var body: some View {
         Text(text)
-            .padding(5)
+            .padding([.top, .bottom], 5)
             .font(.system(size: 24, weight: .regular))
             .foregroundColor(Color("TextColor"))
     }
@@ -30,7 +30,7 @@ struct H2TextError: View {
     var text: String
     var body: some View {
         Text(text)
-            .padding(5)
+            .padding([.top, .bottom], 5)
             .font(.system(size: 24, weight: .regular))
             .foregroundColor(Color("TextErrorColor"))
     }
@@ -40,7 +40,7 @@ struct PText: View {
     var text: String
     var body: some View {
         Text(text)
-            .padding(2)
+            .padding([.top, .bottom], 2)
             .font(.system(size: 12, weight: .regular))
             .foregroundColor(Color("TextColor"))
     }
@@ -64,7 +64,7 @@ struct CustomButton: View {
 struct CustomDivider: View {
     var size: CGFloat
     var body: some View {
-        Divider().padding(size)
+        Divider().padding([.top, .bottom], size)
     }
 }
 
