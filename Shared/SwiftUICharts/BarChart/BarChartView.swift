@@ -127,18 +127,18 @@ public struct BarChartView : View {
     }
     
     func getArrowOffset(touchLocation:CGFloat) -> Binding<CGFloat> {
-        let realLoc = (self.touchLocation * self.formSize.width) - 50
+        let realLoc = (self.touchLocation * self.formSize.width) - 75
         if realLoc < 10 {
             return .constant(realLoc - 10)
-        }else if realLoc > self.formSize.width-110 {
-            return .constant((self.formSize.width-110 - realLoc) * -1)
+        } else if realLoc > self.formSize.width-160 {
+            return .constant((self.formSize.width-160 - realLoc) * -1)
         } else {
             return .constant(0)
         }
     }
     
     func getLabelViewOffset(touchLocation:CGFloat) -> CGFloat {
-        return min(self.formSize.width-110,max(10,(self.touchLocation * self.formSize.width) - 50))
+        return min(self.formSize.width-160,max(10,(self.touchLocation * self.formSize.width) - 75))
     }
     
     func getCurrentValue() -> (String,Double)? {
