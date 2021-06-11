@@ -29,7 +29,7 @@ struct ChartView: View {
                 Spacer() // flushes chart to the bottom
 
                 PieChartView(
-                    data: [1, 1, 1], // TODO (need category name to be displayed on top as well)
+                    data: ChartData(values: postProcBreakdownData(breakdownData: expensifyData.getBreakdownData(startDate: startDate, endDate: endDate))),
                     title: "Cat. Breakdown \(displayDate(date: startDate)) - \(displayDate(date: endDate))",
                     style: Styles.pieChartStyleOne, // TODO (each slice should be a different color, in order, probably tint)
                     form: CGSize(width: 360, height: 400),
@@ -52,5 +52,18 @@ struct ChartView: View {
         let formatter = DateFormatter()
         formatter.dateFormat = "M/dd/yyyy"
         return formatter.string(from: date)
+    }
+    
+    func postProcBreakdownData(breakdownData: Array<(categoryId: String, amount: Float)>) -> Array<(category: String, amount: Float)> {
+        var readableBreakdownData: Array<(category: String, amount: Float)> = []
+        for categoryIndex in 0..<breakdownData.count {
+            readableBreakdownData.append((category: maybeTruncate(s: expensifyData.getCategory(id: breakdownData[categoryIndex].categoryId)), amount: breakdownData[categoryIndex].amount))
+        }
+        return readableBreakdownData
+    }
+    
+    func maybeTruncate(s: String) -> String {
+        if (s.count <= 20) { return s }
+        else { return s[..<s.index(s.startIndex, offsetBy: 20)] + "..." }
     }
 }

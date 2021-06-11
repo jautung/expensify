@@ -14,6 +14,7 @@ struct PieSlice: Identifiable {
     var endDeg: Double
     var value: Double
     var normalizedValue: Double
+    var label: String
 }
 
 public struct PieChartCell : View {

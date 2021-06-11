@@ -10,7 +10,7 @@ import SwiftUI
 
 public struct BarChartView : View {
     @Environment(\.colorScheme) var colorScheme: ColorScheme
-    private var data: ChartData
+    public var data: ChartData
     public var title: String
     public var legend: String?
     public var style: ChartStyle

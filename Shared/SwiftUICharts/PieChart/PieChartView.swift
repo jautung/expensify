@@ -9,7 +9,7 @@
 import SwiftUI
 
 public struct PieChartView : View {
-    public var data: [Double]
+    public var data: ChartData
     public var title: String
     public var legend: String?
     public var style: ChartStyle
@@ -19,7 +19,7 @@ public struct PieChartView : View {
     public var valueSpecifier:String
     
     @State private var showValue = false
-    @State private var currentValue: Double = 0 {
+    @State private var currentValue: (categoryId: String, amount: Double) = (categoryId: "", amount: 0) {
         didSet{
             if(oldValue != self.currentValue && self.showValue) {
                 HapticFeedback.playSelection()
@@ -27,7 +27,7 @@ public struct PieChartView : View {
         }
     }
     
-    public init(data: [Double], title: String, legend: String? = nil, style: ChartStyle = Styles.pieChartStyleOne, form: CGSize? = ChartForm.medium, dropShadow: Bool? = true, cornerImage:Image? = Image(systemName: "chart.pie.fill"), valueSpecifier: String? = "%.1f"){
+    public init(data: ChartData, title: String, legend: String? = nil, style: ChartStyle = Styles.pieChartStyleOne, form: CGSize? = ChartForm.medium, dropShadow: Bool? = true, cornerImage:Image? = Image(systemName: "chart.pie.fill"), valueSpecifier: String? = "%.1f"){
         self.data = data
         self.title = title
         self.legend = legend
@@ -54,7 +54,7 @@ public struct PieChartView : View {
                             .font(.headline)
                             .foregroundColor(self.style.textColor)
                     }else{
-                        Text("\(self.currentValue, specifier: self.valueSpecifier)")
+                        Text("\(self.currentValue.categoryId) - \(self.currentValue.amount, specifier: self.valueSpecifier)")
                             .font(.headline)
                             .foregroundColor(self.style.textColor)
                     }
@@ -80,7 +80,7 @@ public struct PieChartView : View {
 #if DEBUG
 struct PieChartView_Previews : PreviewProvider {
     static var previews: some View {
-        PieChartView(data:[56,78,53,65,54], title: "Title", legend: "Legend")
+        PieChartView(data:TestData.values, title: "Title", legend: "Legend")
     }
 }
 #endif

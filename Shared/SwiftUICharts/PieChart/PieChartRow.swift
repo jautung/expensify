@@ -9,31 +9,32 @@
 import SwiftUI
 
 public struct PieChartRow : View {
-    var data: [Double]
+    var data: ChartData
     var backgroundColor: Color
     var accentColor: Color
     var slices: [PieSlice] {
         var tempSlices:[PieSlice] = []
         var lastEndDeg:Double = 0
-        let maxValue = data.reduce(0, +)
-        for slice in data {
-            let normalized:Double = Double(slice)/Double(maxValue)
+        let dataValues = data.points.map{$0.1}
+        let maxValue = dataValues.reduce(0, +)
+        for slice in data.points {
+            let normalized:Double = Double(slice.1)/Double(maxValue)
             let startDeg = lastEndDeg
             let endDeg = lastEndDeg + (normalized * 360)
             lastEndDeg = endDeg
-            tempSlices.append(PieSlice(startDeg: startDeg, endDeg: endDeg, value: slice, normalizedValue: normalized))
+            tempSlices.append(PieSlice(startDeg: startDeg, endDeg: endDeg, value: slice.1, normalizedValue: normalized, label: slice.0))
         }
         return tempSlices
     }
     
     @Binding var showValue: Bool
-    @Binding var currentValue: Double
+    @Binding var currentValue: (categoryId: String, amount: Double)
     
     @State private var currentTouchedIndex = -1 {
         didSet {
             if oldValue != currentTouchedIndex {
                 showValue = currentTouchedIndex != -1
-                currentValue = showValue ? slices[currentTouchedIndex].value : 0
+                currentValue = showValue ? (categoryId: slices[currentTouchedIndex].label, amount: slices[currentTouchedIndex].value) : (categoryId: "", amount: 0)
             }
         }
     }
@@ -68,12 +69,8 @@ public struct PieChartRow : View {
 #if DEBUG
 struct PieChartRow_Previews : PreviewProvider {
     static var previews: some View {
-        Group {
-            PieChartRow(data:[8,23,54,32,12,37,7,23,43], backgroundColor: Color(red: 252.0/255.0, green: 236.0/255.0, blue: 234.0/255.0), accentColor: Color(red: 225.0/255.0, green: 97.0/255.0, blue: 76.0/255.0), showValue: Binding.constant(false), currentValue: Binding.constant(0))
-                .frame(width: 100, height: 100)
-            PieChartRow(data:[0], backgroundColor: Color(red: 252.0/255.0, green: 236.0/255.0, blue: 234.0/255.0), accentColor: Color(red: 225.0/255.0, green: 97.0/255.0, blue: 76.0/255.0), showValue: Binding.constant(false), currentValue: Binding.constant(0))
-                .frame(width: 100, height: 100)
-        }
+        PieChartRow(data:TestData.values, backgroundColor: Color(red: 252.0/255.0, green: 236.0/255.0, blue: 234.0/255.0), accentColor: Color(red: 225.0/255.0, green: 97.0/255.0, blue: 76.0/255.0), showValue: Binding.constant(false), currentValue: Binding.constant((categoryId: "", amount: 0)))
+            .frame(width: 100, height: 100)
     }
 }
 #endif
