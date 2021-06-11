@@ -28,6 +28,8 @@ struct TrendView: View {
                     CustomPicker(selectedItemId: $categoryId, itemIds: ["__ALL__"] + expensifyData.getCategoryIds() + ["__OTHERS__"], displayer: categoryIdDisplayer)
                 }
 
+                Spacer() // flushes chart to the bottom
+                
                 BarChartView(
                     data: ChartData(values: expensifyData.getTrendData(interval: interval, categoryId: categoryId)),
                     title: "Trend for \(categoryIdDisplayer(categoryId: categoryId)) (\(interval))",
@@ -35,9 +37,7 @@ struct TrendView: View {
                     form: CGSize(width: 360, height: 400),
                     cornerImage: nil,
                     valueSpecifier: "$%.2f (USD)"
-                )
-                
-                Spacer() // flushes VStack to the top
+                ).padding(30)
             }
         }
     }

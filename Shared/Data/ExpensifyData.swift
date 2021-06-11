@@ -117,6 +117,16 @@ final class ExpensifyData: ObservableObject, Codable {
     func getExpensesReverseChrono() -> Array<Expense> {
         return expenses.sorted { $0.date > $1.date }
     }
+    
+    func getExpenseFirstDate() -> Date {
+        let expensesChrono = expenses.sorted { $0.date < $1.date }
+        return expensesChrono.first!.date
+    }
+
+    func getExpenseLastDate() -> Date {
+        let expensesChrono = expenses.sorted { $0.date < $1.date }
+        return expensesChrono.last!.date
+    }
 
     func getExpense(id: String) -> Expense {
         for expenseIndex in 0..<expenses.count {
@@ -144,13 +154,11 @@ final class ExpensifyData: ObservableObject, Codable {
         }
         return fullDataExport
     }
-    
+        
     func getTrendData(interval: String, categoryId: String) -> Array<(interval: String, amount: Float)> {
         if expenses.count <= 0 { return [] } // no data to get
-
-        let expensesChrono = expenses.sorted { $0.date < $1.date }
-        let dateFirst = expensesChrono.first!.date
-        let dateLast = expensesChrono.last!.date
+        let dateFirst = getExpenseFirstDate()
+        let dateLast = getExpenseLastDate()
 
         var dateIntervalStartComponents = DateComponents()
         dateIntervalStartComponents.hour = 0
