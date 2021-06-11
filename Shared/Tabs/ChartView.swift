@@ -31,7 +31,7 @@ struct ChartView: View {
                 PieChartView(
                     data: ChartData(values: postProcBreakdownData(breakdownData: expensifyData.getBreakdownData(startDate: startDate, endDate: endDate))),
                     title: "Cat. Breakdown \(displayDate(date: startDate)) - \(displayDate(date: endDate))",
-                    style: Styles.pieChartStyleOne, // TODO (each slice should be a different color, in order, probably tint)
+                    style: Styles.pieChartMidnightGreenLight,
                     form: CGSize(width: 360, height: 400),
                     cornerImage: nil,
                     valueSpecifier: "$%.2f (USD)"

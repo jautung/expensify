@@ -108,7 +108,7 @@ public struct Styles {
         legendTextColor:Color.gray,
         dropShadowColor: Color.gray)
     
-    public static let pieChartStyleOne = ChartStyle(
+    public static let pieChartStyleOrangeLight = ChartStyle(
         backgroundColor: Color.white,
         accentColor: Colors.OrangeEnd,
         secondGradientColor: Colors.OrangeStart,
@@ -116,6 +116,14 @@ public struct Styles {
         legendTextColor: Color.gray,
         dropShadowColor: Color.gray)
     
+    public static let pieChartMidnightGreenLight = ChartStyle(
+        backgroundColor: Color.white,
+        accentColor: Color(hexString: "#84A094"), //84A094 , 698378
+        secondGradientColor: Color(hexString: "#50675D"),
+        textColor: Color.black,
+        legendTextColor:Color.gray,
+        dropShadowColor: Color.gray)
+
     public static let lineViewDarkMode = ChartStyle(
         backgroundColor: Color.black,
         accentColor: Colors.OrangeStart,
