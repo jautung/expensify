@@ -25,7 +25,7 @@ struct TrendView: View {
 
                 VStack {
                     H2Text(text: "Category")
-                    CustomPicker(selectedItemId: $categoryId, itemIds: ["__ALL__"] + expensifyData.getCategoryIds(), displayer: categoryIdDisplayer)
+                    CustomPicker(selectedItemId: $categoryId, itemIds: ["__ALL__"] + expensifyData.getCategoryIds() + ["__OTHERS__"], displayer: categoryIdDisplayer)
                 }
 
                 BarChartView(
@@ -44,6 +44,7 @@ struct TrendView: View {
     
     func categoryIdDisplayer(categoryId: String) -> String {
         if categoryId == "__ALL__" { return "All" }
+        else if categoryId == "__OTHERS__" { return "Others" }
         else { return expensifyData.getCategory(id: categoryId) }
     }
 }
