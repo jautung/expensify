@@ -101,7 +101,7 @@ public struct Styles {
         dropShadowColor: Color.gray)
     
     public static let barChartMidnightGreenLight = ChartStyle(
-        backgroundColor: Color.white,
+        backgroundColor: Color(hexString: "#C9C9C9"),
         accentColor: Color(hexString: "#84A094"), //84A094 , 698378
         secondGradientColor: Color(hexString: "#50675D"),
         textColor: Color.black,
